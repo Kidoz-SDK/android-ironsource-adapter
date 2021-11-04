@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         release {
-            storeFile file('kidoziskeystore')
+            storeFile file('../kidoziskeystore')
             storePassword 'kidozis123'
             keyAlias 'kidoziskeystore'
             keyPassword 'kidozis123'
