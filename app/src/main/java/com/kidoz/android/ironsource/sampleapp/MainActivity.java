@@ -174,37 +174,45 @@ public class MainActivity extends Activity implements InterstitialListener {
     // Kidoz Direct
     ///////////////////////////////
 
-    private void initKidozSDK()
-    {
-        KidozSDK.setSDKListener(new SDKEventListener()
-        {
-            @Override
-            public void onInitSuccess()
-            {
-                log("KIDOZ SDK onInitSuccess");
-                initSDKBtn.setEnabled(false);
-                loadKidozBannerBtn.setEnabled(true);
-                loadKidozRewardedBtn.setEnabled(true);
-                progressBar.setVisibility(View.GONE);
+    private void initKidozSDK(){
+        if(KidozSDK.isInitialised()){
+            // If load ironSource interstitial was called previously Kidoz SDK should be already initialized
+            onDirectKidozSDKInit();
+            log("KIDOZ SDK already initialized");
+        }
+        else {
+            KidozSDK.setSDKListener(new SDKEventListener() {
+                @Override
+                public void onInitSuccess() {
+                    log("KIDOZ SDK onInitSuccess");
+                    onDirectKidozSDKInit();
 
-            }
+                }
 
-            @Override
-            public void onInitError(String error)
-            {
-                log("KIDOZ SDK onInitError");
-                progressBar.setVisibility(View.GONE);
+                @Override
+                public void onInitError(String error) {
+                    log("KIDOZ SDK onInitError");
+                    progressBar.setVisibility(View.GONE);
 
-            }
-        });
+                }
+            });
+
+            progressBar.setVisibility(View.VISIBLE);
+
+            KidozSDK.initialize(this, "5", "i0tnrdwdtq0dm36cqcpg6uyuwupkj76s");
+            log("SDK Init..");
+        }
+    }
+
+    private void onDirectKidozSDKInit() {
 
         initKidozRewarded();
         initKidozBanners();
 
-        progressBar.setVisibility(View.VISIBLE);
-
-        KidozSDK.initialize(this, KIDOZ_DIRECT_TEST_PUBLISHER_ID, KIDOZ_DIRECT_TEST_TOKEN);
-        log("SDK Init..");
+        initSDKBtn.setEnabled(false);
+        loadKidozBannerBtn.setEnabled(true);
+        loadKidozRewardedBtn.setEnabled(true);
+        progressBar.setVisibility(View.GONE);
     }
 
     // Rewarded

@@ -35,6 +35,6 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ['*.jar','*.aar'])
-    implementation 'com.ironsource.sdk:mediationsdk:7.1.12'
+    implementation 'com.ironsource.sdk:mediationsdk:7.1.11'
     implementation 'org.greenrobot:eventbus:3.2.0'
 }
