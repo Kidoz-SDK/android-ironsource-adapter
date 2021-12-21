@@ -45,7 +45,8 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ['*.jar','*.aar'])
-    implementation 'com.ironsource.sdk:mediationsdk:7.1.11'
+    implementation 'com.ironsource.sdk:mediationsdk:7.1.12.1'
     implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'net.kidoz.sdk:kidoz-android-native:8.9.5'
+    implementation 'net.kidoz.sdk:kidoz-android-ironsource-adapter:1.0.0'
 }
