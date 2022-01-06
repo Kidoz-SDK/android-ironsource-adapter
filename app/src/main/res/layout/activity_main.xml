@@ -54,6 +54,35 @@
                         android:text="Show ironSource\nInterstitial" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ironSourceRewardedContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ironSourceInterstitialContainer"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/ironSource_rewarded_load_button"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ironsource_button_shape"
+                        android:text="Load ironSource\nRewarded" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="0dp" />
+
+                    <Button
+                        android:id="@+id/ironSource_rewarded_show_button"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ironsource_button_shape"
+                        android:enabled="false"
+                        android:text="Show ironSource\nRewarded" />
+
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -78,80 +107,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView"
-                    android:layout_alignLeft="@+id/rewardedContainer"
-                    android:layout_alignRight="@+id/rewardedContainer"
+                    android:layout_alignLeft="@+id/bannerButtonsContainer"
+                    android:layout_alignRight="@+id/bannerButtonsContainer"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/ironsource_button_shape"
                     android:text="Init Kidoz SDK" />
 
                 <LinearLayout
-                    android:id="@+id/rewardedContainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/init_sdk_button"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/rw_load_button"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ironsource_button_shape"
-                        android:enabled="false"
-                        android:text="Load\nRewarded" />
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="0dp" />
-
-                    <Button
-                        android:id="@+id/rw_show_button"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ironsource_button_shape"
-                        android:enabled="false"
-                        android:text="Show\nRewarded" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/interstitialContainer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_below="@+id/rewardedContainer"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/is_load_button"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ironsource_button_shape"
-                        android:enabled="false"
-                        android:text="Load\nInterstitial" />
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="0dp" />
-
-                    <Button
-                        android:id="@+id/is_show_button"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ironsource_button_shape"
-                        android:enabled="false"
-                        android:text="Show\nInterstitial" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/bannerButtonsContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/interstitialContainer"
+                    android:layout_below="@+id/init_sdk_button"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">

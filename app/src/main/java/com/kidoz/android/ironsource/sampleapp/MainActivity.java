@@ -10,7 +10,9 @@ import android.widget.Toast;
 import com.ironsource.adapters.custom.kidoz.KidozSDKInfo;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.logger.IronSourceError;
+import com.ironsource.mediationsdk.model.Placement;
 import com.ironsource.mediationsdk.sdk.InterstitialListener;
+import com.ironsource.mediationsdk.sdk.RewardedVideoManualListener;
 import com.kidoz.sdk.api.KidozInterstitial;
 import com.kidoz.sdk.api.KidozSDK;
 import com.kidoz.sdk.api.interfaces.SDKEventListener;
@@ -19,21 +21,20 @@ import com.kidoz.sdk.api.ui_views.kidoz_banner.KidozBannerListener;
 import com.kidoz.sdk.api.ui_views.new_kidoz_banner.BANNER_POSITION;
 import com.kidoz.sdk.api.ui_views.new_kidoz_banner.KidozBannerView;
 
-public class MainActivity extends Activity implements InterstitialListener {
+public class MainActivity extends Activity implements InterstitialListener, RewardedVideoManualListener {
 
     public static final String APP_KEY = "11cfc977d"; // TODO Replace with your ironSource App Key here
 
     // The following parameters are relevant for calling KIDOZ adds directly without ironSource mediation
     public static final String KIDOZ_DIRECT_TEST_PUBLISHER_ID = "5"; // TODO Replace with your KIDOZ Publisher ID
     public static final String KIDOZ_DIRECT_TEST_TOKEN = "i0tnrdwdtq0dm36cqcpg6uyuwupkj76s";// TODO Replace with your KIDOZ Token
-//QVBIh5K3tr1AxO4A1d4ZWx1YAe5567os
+
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private KidozInterstitial mKidozInterstitialRewarded;
     private KidozBannerView mKidozBannerView;
     private ProgressBar progressBar;
 
-    View loadKidozRewardedBtn, showKidozRewardedBtn,loadKidozBannerBtn, showKidozBannerBtn, loadIronSourceInterstitialBtn, showIronSourceInterstitialBtn;
+    View loadIronSourceRewardedBtn, showIronSourceRewardedBtn,loadKidozBannerBtn, showKidozBannerBtn, loadIronSourceInterstitialBtn, showIronSourceInterstitialBtn;
     private View initSDKBtn;
 
     @Override
@@ -71,18 +72,18 @@ public class MainActivity extends Activity implements InterstitialListener {
         });
 
         // KIDOZ direct calls for banners and rewarded
-        loadKidozRewardedBtn = findViewById(R.id.rw_load_button);
-        loadKidozRewardedBtn.setOnClickListener(new View.OnClickListener() {
+        loadIronSourceRewardedBtn = findViewById(R.id.ironSource_rewarded_load_button);
+        loadIronSourceRewardedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadKidozRewarded();
+                loadIronSourceRewarded();
             }
         });
-        showKidozRewardedBtn = findViewById(R.id.rw_show_button);
-        showKidozRewardedBtn.setOnClickListener(new View.OnClickListener() {
+        showIronSourceRewardedBtn = findViewById(R.id.ironSource_rewarded_show_button);
+        showIronSourceRewardedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showKidozRewarded();
+                showIronSourceRewarded();
             }
         });
 
@@ -111,6 +112,7 @@ public class MainActivity extends Activity implements InterstitialListener {
     private void initIronSource(){
 
         IronSource.setInterstitialListener(this);
+        IronSource.setManualLoadRewardedVideo(this);
         // init the IronSource SDK
         IronSource.init(this, APP_KEY);
 
@@ -118,6 +120,10 @@ public class MainActivity extends Activity implements InterstitialListener {
     //  IronSource.setAdaptersDebug(true);
 
     }
+
+    // ****************************
+    // ironSource Interstitial
+    // ****************************
 
     @Override
     public void onInterstitialAdReady() {
@@ -170,6 +176,81 @@ public class MainActivity extends Activity implements InterstitialListener {
         log("ironSource onInterstitialAdClicked");
     }
 
+    @Override
+    public void onRewardedVideoAdOpened() {
+        log("ironSource onRewardedVideoAdOpened");
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        log("ironSource onRewardedVideoAdClosed");
+    }
+
+    // ****************************
+    // ironSource Rewarded
+    // ****************************
+
+    @Override
+    public void onRewardedVideoAvailabilityChanged(boolean ready) {
+        if(ready) {
+            log("ironSource onRewardedAdReady");
+        }
+        else{
+            log("ironSource onRewardedAdNotReady");
+        }
+        showIronSourceRewardedBtn.setEnabled(ready);
+        loadIronSourceRewardedBtn.setEnabled(!ready);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onRewardedVideoAdStarted() {
+        log("ironSource onRewardedVideoAdStarted");
+        showIronSourceRewardedBtn.setEnabled(false);
+        loadIronSourceRewardedBtn.setEnabled(true);
+    }
+
+    @Override
+    public void onRewardedVideoAdEnded() {
+        log("ironSource onRewardedVideoAdEnded");
+        showIronSourceRewardedBtn.setEnabled(false);
+        loadIronSourceRewardedBtn.setEnabled(true);
+    }
+
+    @Override
+    public void onRewardedVideoAdRewarded(Placement placement) {
+        log("ironSource onRewardedVideoAdRewarded");
+    }
+
+    @Override
+    public void onRewardedVideoAdShowFailed(IronSourceError ironSourceError) {
+        showIronSourceRewardedBtn.setEnabled(false);
+        loadIronSourceRewardedBtn.setEnabled(true);
+        log("ironSource onRewardedVideoAdShowFailed:: " + getErrorLog(ironSourceError));
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onRewardedVideoAdClicked(Placement placement) {
+        log("ironSource onRewardedVideoAdClicked");
+    }
+
+    @Override
+    public void onRewardedVideoAdReady() {
+        log("ironSource onRewardedVideoAdReady");
+        showIronSourceRewardedBtn.setEnabled(true);
+        loadIronSourceRewardedBtn.setEnabled(false);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onRewardedVideoAdLoadFailed(IronSourceError ironSourceError){
+        showIronSourceRewardedBtn.setEnabled(false);
+        loadIronSourceRewardedBtn.setEnabled(true);
+        log("ironSource onRewardedVideoAdShowFailed:: " + getErrorLog(ironSourceError));
+        progressBar.setVisibility(View.GONE);
+    }
+
     ///////////////////////////////
     // Kidoz Direct
     ///////////////////////////////
@@ -199,94 +280,30 @@ public class MainActivity extends Activity implements InterstitialListener {
 
             progressBar.setVisibility(View.VISIBLE);
 
-            KidozSDK.initialize(this, "5", "i0tnrdwdtq0dm36cqcpg6uyuwupkj76s");
+            KidozSDK.initialize(this, KIDOZ_DIRECT_TEST_PUBLISHER_ID, KIDOZ_DIRECT_TEST_TOKEN);
             log("SDK Init..");
         }
     }
 
     private void onDirectKidozSDKInit() {
 
-        initKidozRewarded();
         initKidozBanners();
-
         initSDKBtn.setEnabled(false);
         loadKidozBannerBtn.setEnabled(true);
-        loadKidozRewardedBtn.setEnabled(true);
         progressBar.setVisibility(View.GONE);
     }
 
     // Rewarded
 
-    private void initKidozRewarded(){
-        mKidozInterstitialRewarded = new KidozInterstitial(this, KidozInterstitial.AD_TYPE.REWARDED_VIDEO);
-        mKidozInterstitialRewarded.setOnInterstitialEventListener(new BaseInterstitial.IOnInterstitialEventListener()
-        {
-            @Override
-            public void onClosed()
-            {
-                log("KIDOZ Rewarded onClosed");
-                showKidozRewardedBtn.setEnabled(false);
-                loadKidozRewardedBtn.setEnabled(true);
-            }
-
-            @Override
-            public void onOpened()
-            {
-                log("KIDOZ Rewarded onOpened");
-                mKidozBannerView.hide();
-            }
-
-            @Override
-            public void onReady()
-            {
-                log("KIDOZ Rewarded onReady");
-                showKidozRewardedBtn.setEnabled(true);
-                progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onLoadFailed()
-            {
-                log("KIDOZ Rewarded onLoadFailed");
-                showKidozRewardedBtn.setEnabled(false);
-                loadKidozRewardedBtn.setEnabled(true);
-                progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onNoOffers()
-            {
-                log("KIDOZ Rewarded onNoOffers");
-                showKidozRewardedBtn.setEnabled(false);
-                loadKidozRewardedBtn.setEnabled(true);
-                progressBar.setVisibility(View.GONE);
-            }
-        });
-        mKidozInterstitialRewarded.setOnInterstitialRewardedEventListener(new BaseInterstitial.IOnInterstitialRewardedEventListener()
-        {
-            @Override
-            public void onRewardReceived()
-            {
-                log("KIDOZ onRewardReceived");
-            }
-
-            @Override
-            public void onRewardedStarted()
-            {
-                log("KIDOZ onRewardedStarted");
-            }
-        });
-    }
-
-    private void loadKidozRewarded(){
-        mKidozInterstitialRewarded.loadAd();
-        loadKidozRewardedBtn.setEnabled(false);
+    private void loadIronSourceRewarded(){
+        IronSource.loadRewardedVideo();
+        loadIronSourceRewardedBtn.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    private void showKidozRewarded(){
-        mKidozInterstitialRewarded.show();
-        loadKidozRewardedBtn.setEnabled(true);
+    private void showIronSourceRewarded(){
+        IronSource.showRewardedVideo();
+        loadIronSourceRewardedBtn.setEnabled(true);
     }
 
     private void loadIronSourceInterstitial() {

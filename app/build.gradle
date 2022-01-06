@@ -10,7 +10,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0.0-beta"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,7 +45,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.ironsource.sdk:mediationsdk:7.1.12.1'
+    implementation 'com.ironsource.sdk:mediationsdk:7.1.13'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'net.kidoz.sdk:kidoz-android-native:8.9.5'
     implementation 'net.kidoz.sdk:kidoz-android-ironsource-adapter:1.0.0'
