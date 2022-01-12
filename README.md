@@ -44,3 +44,5 @@ On a general note you should follow the instructions givven on the ironSource An
   // Init ironSource
   IronSource.init(this, APP_KEY);
 ```
+See the sample code for example as how to load and show Interstitial and Rewarded videos and receive Ad units lifecycle callbacks.
+Be aware that you need to call the `IronSource.setManualLoadRewardedVideo(...)` method in order to be able to load and show Rewarded Videos programmatically from your code.
