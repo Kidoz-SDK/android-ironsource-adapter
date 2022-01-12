@@ -8,7 +8,7 @@ The Kidoz ironSource Adapter offers support for the following ad types:
 + ironSource Interstitial Mediation 
 + ironSource Rewarded Video Mediation 
   
-Until ironSource mediation SDK supports Banner mediation for custom networks publishers who choose to do so can use Kidoz banners directly
+Until ironSource mediation SDK supports Banner mediation for custom networks, publishers who choose to do so can use Kidoz banners directly
 from Kidoz SDK.<BR>
   
 Prerequisites
