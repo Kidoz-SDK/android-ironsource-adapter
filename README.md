@@ -14,7 +14,7 @@ Until ironSource mediation SDK supports Banner mediation for custom networks pub
 from Kidoz SDK.
   
 Before publishing your first app please finish the onboarding process for Kidoz's publishers [HERE](http://accounts.kidoz.net/publishers/register?utm_source=&utm_content=&utm_campaign=&utm_medium=)  
-and follow the instructions for ironSource Custom Adapter setup [HERE](https://developers.is.com/ironsource-mobile/general/custom-adapter-setup/).<BR>
+and follow the instructions for ironSource Custom Adapter setup [HERE](https://developers.is.com/ironsource-mobile/general/custom-adapter-setup/).<BR><BR>
 Kidoz Network ID on ironSource is `2b618dcd` and you will need to setup the network level parameters with the `Publisher Id` and `Token` you got from Kidoz:  
   
   <img width="598" alt="ironSourceNetwork" src="https://user-images.githubusercontent.com/86282008/149078934-107106f0-a526-45bc-9c93-8ca53d5bf3cc.png">
@@ -51,5 +51,30 @@ Kidoz Direct Banners
 =================================
   
 Until ironSource mediation SDK supports banners custom adapters publishers can load and show Kidoz banners by using Kidoz SDK directly.
-  
 
+```java
+// Intializing Kidoz SDK if not already Initialized by ironSource
+  
+  if(KidozSDK.isInitialised()){
+      // If load ironSource interstitial or Rewarded was called previously Kidoz SDK should be already initialized
+      initKidozBanners();
+  }
+  else {
+      KidozSDK.setSDKListener(new SDKEventListener() {
+          @Override
+          public void onInitSuccess() {
+              initKidozBanners();
+          }
+
+          @Override
+          public void onInitError(String error) {
+              // Handle Kidoz initialization error here
+
+          }
+      });
+      KidozSDK.initialize(this, `Publisher ID`, `Token`);
+  }
+```
+Make sure the `Publisher ID` and `Token` you send on the `KidozSDK.initialize(...)` method are your own unique parameters and not the Kidoz Test parameters used in this sample. This parameters need to be the same ones you used as network level parameters when adding the Kidoz network on the ironSource dashboard.<BR><BR>
+  
+See the sample code for example as how to init, load and show Kidoz Banners and receive lifecycle callbacks.
