@@ -1,5 +1,4 @@
 # Android ironSource Adapter + Sample App
-==========================================
 
 **General Notes and Prerequisites**<BR>
 
