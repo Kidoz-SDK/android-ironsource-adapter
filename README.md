@@ -1,5 +1,8 @@
 # Android ironSource Adapter + Sample App
 
+The Kidoz ironSource Adapter SDK is built and tested with ironSource mediation v7.1.13.
+You should only use this version or above as it is the first stable custom mediation release. 
+
 **General Notes and Prerequisites**<BR>
 
 The Kidoz ironSource Adapter offers support for the following ad types:
@@ -27,3 +30,17 @@ dependencies {
     implementation 'net.kidoz.sdk:kidoz-android-ironsource-adapter:1.0.0'
 }
 ``` 
+
+ironSource Integration
+=================================
+  
+On a general note you should follow the instructions givven on the ironSource Android SDK Integration page [HERE](https://developers.is.com/ironsource-mobile/android/android-sdk/) but as far as Kidoz integration goes you only need to do the following on You Activity:
+  
+```java
+  // Initialize listeners
+  IronSource.setInterstitialListener(mInterstitialListener);
+  IronSource.setManualLoadRewardedVideo(mRewardedVideoManualListener);
+  
+  // Init ironSource
+  IronSource.init(this, APP_KEY);
+```
