@@ -84,6 +84,6 @@ Until ironSource mediation SDK supports banners custom adapters publishers can l
       KidozSDK.initialize(this, `Publisher ID`, `Token`);
   }
 ```
-Make sure the `Publisher ID` and `Token` you send on the `KidozSDK.initialize(...)` method are your own unique parameters and not the Kidoz Test parameters used in this sample. This parameters need to be the same ones you used as network level parameters when adding the Kidoz network on the ironSource dashboard.<BR><BR>
+Make sure the `Publisher ID` and `Token` you send on the `KidozSDK.initialize(...)` method are your own unique parameters and not the Kidoz Test parameters used in this sample. This parameters need to be the same ones you used as network level parameters when adding the Kidoz network on the ironSource dashboard.<BR>
   
 See the sample code for example as how to init, load and show Kidoz Banners and receive lifecycle callbacks.
