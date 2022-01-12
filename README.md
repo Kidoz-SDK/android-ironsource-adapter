@@ -10,8 +10,7 @@ The Kidoz ironSource Adapter offers support for the following ad types:
 Until ironSource mediation SDK supports Banner mediation for custom networks publishers who choose to do so can use Kidoz banners directly
 from Kidoz SDK.
   
-Before publishing your first app please finish the onboarding process for Kidoz's publishers [HERE](http://accounts.kidoz.net/publishers/register?utm_source=&utm_content=&utm_campaign=&utm_medium=).
-  
+Before publishing your first app please finish the onboarding process for Kidoz's publishers [HERE](http://accounts.kidoz.net/publishers/register?utm_source=&utm_content=&utm_campaign=&utm_medium=).  
 And follow the instructions for ironSource Custom Adapter setup [HERE](https://developers.is.com/ironsource-mobile/general/custom-adapter-setup/).<BR>
 You will need to setup the network level parameters with the `Publisher Id` and `Token` you got from Kidoz:  
   
