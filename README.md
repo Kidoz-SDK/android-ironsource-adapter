@@ -35,7 +35,7 @@ dependencies {
 IronSource Integration
 =================================
   
-On a general note you should follow the instructions given on the ironSource Android SDK Integration page [HERE](https://developers.is.com/ironsource-mobile/android/android-sdk/) but as far as Kidoz integration goes you only need to do the following on You Activity:
+On a general note you should follow the instructions given on the ironSource Android SDK Integration page [HERE](https://developers.is.com/ironsource-mobile/android/android-sdk/) but as far as Kidoz integration goes you only need to do the following on your activity:
   
 ```java
   // Initialize listeners
