@@ -257,7 +257,7 @@ public class MainActivity extends Activity implements InterstitialListener, Rewa
 
     private void initKidozSDK(){
         if(KidozSDK.isInitialised()){
-            // If load ironSource interstitial was called previously Kidoz SDK should be already initialized
+            // If load ironSource interstitial or Rewarded was called previously Kidoz SDK should be already initialized
             onDirectKidozSDKInit();
             log("KIDOZ SDK already initialized");
         }
