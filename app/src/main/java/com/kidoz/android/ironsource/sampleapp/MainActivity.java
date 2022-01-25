@@ -176,6 +176,10 @@ public class MainActivity extends Activity implements InterstitialListener, Rewa
         log("ironSource onInterstitialAdClicked");
     }
 
+    // ****************************
+    // ironSource Rewarded
+    // ****************************
+
     @Override
     public void onRewardedVideoAdOpened() {
         log("ironSource onRewardedVideoAdOpened");
@@ -185,10 +189,6 @@ public class MainActivity extends Activity implements InterstitialListener, Rewa
     public void onRewardedVideoAdClosed() {
         log("ironSource onRewardedVideoAdClosed");
     }
-
-    // ****************************
-    // ironSource Rewarded
-    // ****************************
 
     @Override
     public void onRewardedVideoAvailabilityChanged(boolean ready) {
@@ -224,10 +224,12 @@ public class MainActivity extends Activity implements InterstitialListener, Rewa
 
     @Override
     public void onRewardedVideoAdShowFailed(IronSourceError ironSourceError) {
-        showIronSourceRewardedBtn.setEnabled(false);
-        loadIronSourceRewardedBtn.setEnabled(true);
-        log("ironSource onRewardedVideoAdShowFailed:: " + getErrorLog(ironSourceError));
-        progressBar.setVisibility(View.GONE);
+        runOnUiThread(()->{
+            showIronSourceRewardedBtn.setEnabled(false);
+            loadIronSourceRewardedBtn.setEnabled(true);
+            log("ironSource onRewardedVideoAdShowFailed:: " + getErrorLog(ironSourceError));
+            progressBar.setVisibility(View.GONE);
+        });
     }
 
     @Override
@@ -247,7 +249,7 @@ public class MainActivity extends Activity implements InterstitialListener, Rewa
     public void onRewardedVideoAdLoadFailed(IronSourceError ironSourceError){
         showIronSourceRewardedBtn.setEnabled(false);
         loadIronSourceRewardedBtn.setEnabled(true);
-        log("ironSource onRewardedVideoAdShowFailed:: " + getErrorLog(ironSourceError));
+        log("ironSource onRewardedVideoAdLoadFailed:: " + getErrorLog(ironSourceError));
         progressBar.setVisibility(View.GONE);
     }
 
