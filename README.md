@@ -1,6 +1,6 @@
 # Android ironSource Adapter + Sample App
 
-The Kidoz ironSource Adapter SDK is built and tested with ironSource mediation v7.1.13.<BR>
+The Kidoz ironSource Adapter SDK is built and tested with ironSource mediation v7.2.1.1.<BR>
 You should only use this version or above as it is the first stable custom mediation release. <BR>
 
 The Adapter offers support for the following ad types:
@@ -27,8 +27,8 @@ Getting Started
 ```groovy
 dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
-    implementation 'net.kidoz.sdk:kidoz-android-native:8.9.5'
-    implementation 'net.kidoz.sdk:kidoz-android-ironsource-adapter:1.0.0'
+    implementation 'net.kidoz.sdk:kidoz-android-native:8.9.7'
+    implementation 'net.kidoz.sdk:kidoz-android-ironsource-adapter:1.1.1'
 }
 ``` 
 
