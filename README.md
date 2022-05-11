@@ -27,8 +27,8 @@ Getting Started
 ```groovy
 dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
-    implementation 'net.kidoz.sdk:kidoz-android-native:8.9.5'
-    implementation 'net.kidoz.sdk:kidoz-android-ironsource-adapter:1.0.0'
+    implementation 'net.kidoz.sdk:kidoz-android-native:8.9.7'
+    implementation 'net.kidoz.sdk:kidoz-android-ironsource-adapter:1.1.1'
 }
 ``` 
 
